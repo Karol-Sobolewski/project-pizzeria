@@ -62,8 +62,8 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
-      //  thisProduct.initOrderForm();
-      // thisProduct.processOrder();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
 
       console.log('new Product', thisProduct);
     }
@@ -112,7 +112,7 @@
         /* prevent default action for event */
         event.preventDefault();
 
-        /* find all active products */
+        /* find active products */
         const activeProduct = document.querySelector(select.all.menuProductsActive);
 
         /*if and the active product isn't the element of thisProduct */
@@ -123,6 +123,76 @@
       /* END: click event listener to trigger */
       });
     }
+
+    initOrderForm(){
+      const thisProduct = this;
+
+      thisProduct.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          thisProduct.processOrder();
+        });
+      }
+
+      thisProduct.cartButton.addEventListener('click', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+     // console.log('initOrderForm');
+
+    }
+
+    processOrder(){
+      const thisProduct = this;
+
+      const formData = utils.serializeFormToObject(thisProduct.form);
+     // console.log('formData', formData);
+    //  console.log('processOrder');
+
+      let price = thisProduct.data.price;
+      console.log('price', price);
+      /* find all params */
+      /*Start loop for all params */
+      //const params = formData.elemenet;
+      // console.log(params);
+
+      /*find all values (coffee, sauce, toppings, crust, ect) in params object (params={}) */
+      for(let paramId in thisProduct.data.params){
+        //console.log('paramid', paramId);
+
+        /* coonstans options = key {label, type, options} of value in params object*/
+        const param = thisProduct.data.params[paramId];
+       // console.log('param options', param.options);
+
+        /*Start loop for each key of value in params object*/
+        for (let optionId in param.options){
+          const option = param.options[optionId];
+
+          /*?????*/
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+
+          /*START IF: if option is selected and option is not default else if option is not selected and option is default*/
+          if(optionSelected && !option.default){
+            price += option.price;
+          } else if(!optionSelected && option.default){
+            price -= option.price;
+          }
+
+        /*end loop for options in params*/
+        }
+
+      /*end loop for all params */
+      }
+
+      thisProduct.priceElem.innerHTML = price;
+
+      /* End of processOrder */
+    }
+
   }
 
   const app = {
