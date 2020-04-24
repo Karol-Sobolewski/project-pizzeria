@@ -60,7 +60,10 @@
       thisProduct.data= data;
 
       thisProduct.renderInMenu();
-      thisProduct.initAccordin();
+      thisProduct.getElements();
+      thisProduct.initAccordion();
+      //  thisProduct.initOrderForm();
+      // thisProduct.processOrder();
 
       console.log('new Product', thisProduct);
     }
@@ -70,7 +73,7 @@
 
       /* generate HTML based on template */
       const generateHTML = templates.menuProduct(thisProduct.data);
-      console.log('generateHTML', generateHTML);
+      //console.log('generateHTML', generateHTML);
 
       /* create element using  utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generateHTML);
@@ -82,7 +85,22 @@
       menuContainer.appendChild(thisProduct.element);
 
     }
-    initAccordin(){
+
+    getElements(){
+      const thisProduct = this;
+
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      console.log(' thisProduct.form', thisProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      console.log('thisProduct.formInputs', thisProduct.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      console.log('cartButton', thisProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      console.log('priceElem', thisProduct.priceElem);
+    }
+
+    initAccordion(){
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
@@ -90,41 +108,21 @@
 
       /* START: click event listener to trigger */
       clickTrigger.addEventListener('click', function(event){
-        console.log('clicked');
 
         /* prevent default action for event */
         event.preventDefault();
 
-        /* toggle active class on element of thisProduct */
-        const activeLink = thisProduct.element.classList.toggle('active');
-        console.log('thisProduct.element', thisProduct.element);
-
         /* find all active products */
+        const activeProduct = document.querySelector(select.all.menuProductsActive);
 
-        const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
+        /*if and the active product isn't the element of thisProduct */
+        if(activeProduct && activeProduct !== thisProduct.element) activeProduct.classList.remove('active')
 
-        console.log('activeProducts', activeProducts);
-
-        /* START LOOP: for each active product */
-        for(let activeProduct of activeProducts){
-          console.log('activeProduct', activeProduct);
-
-          /* START: if the active product isn't the element of thisProduct */
-          if(activeProduct != thisProduct.element){
-
-            /* remove class active for the active product */
-            activeProduct.classList.remove('active');
-
-            /* END: if the active product isn't the element of thisProduct */
-          }
-
-        /* END LOOP: for each active product */
-        }
-
+        /* toggle active class on element of thisProduct */
+        thisProduct.element.classList.toggle('active');
       /* END: click event listener to trigger */
       });
     }
-
   }
 
   const app = {
