@@ -91,13 +91,15 @@
 
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
-      console.log(' thisProduct.form', thisProduct.form);
+      //console.log(' thisProduct.form', thisProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
-      console.log('thisProduct.formInputs', thisProduct.formInputs);
+      //console.log('thisProduct.formInputs', thisProduct.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
-      console.log('cartButton', thisProduct.cartButton);
+      //console.log('cartButton', thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      console.log('priceElem', thisProduct.priceElem);
+      //console.log('priceElem', thisProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log('imageWrapper', thisProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -116,7 +118,7 @@
         const activeProduct = document.querySelector(select.all.menuProductsActive);
 
         /*if and the active product isn't the element of thisProduct */
-        if(activeProduct && activeProduct !== thisProduct.element) activeProduct.classList.remove('active')
+        if(activeProduct && activeProduct !== thisProduct.element) activeProduct.classList.remove('active');
 
         /* toggle active class on element of thisProduct */
         thisProduct.element.classList.toggle('active');
@@ -142,8 +144,6 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
-     // console.log('initOrderForm');
-
     }
 
     processOrder(){
@@ -152,11 +152,10 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
 
       let price = thisProduct.data.price;
-      console.log('price', price);
 
       /*find all values (coffee, sauce, toppings, crust, ect) in params object (params={}) */
       for(let paramId in thisProduct.data.params){
-
+        console.log('paramId', paramId);
         /* coonstans options = key {label, type, options} of value in params object*/
         const param = thisProduct.data.params[paramId];
 
@@ -172,6 +171,19 @@
             price += option.price;
           } else if(!optionSelected && option.default){
             price -= option.price;
+          }
+          const selectedImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+
+          if(optionSelected){
+            for(const selectedImage of selectedImages){
+              //console.log('selectedImage', selectedImage);
+              selectedImage.classList.add(classNames.menuProduct.imageVisible);
+            }
+          } else {
+            for(const selectedImage of selectedImages){
+
+              selectedImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
 
         /*end loop for options in params*/
