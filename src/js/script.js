@@ -150,23 +150,15 @@
       const thisProduct = this;
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-     // console.log('formData', formData);
-    //  console.log('processOrder');
 
       let price = thisProduct.data.price;
       console.log('price', price);
-      /* find all params */
-      /*Start loop for all params */
-      //const params = formData.elemenet;
-      // console.log(params);
 
       /*find all values (coffee, sauce, toppings, crust, ect) in params object (params={}) */
       for(let paramId in thisProduct.data.params){
-        //console.log('paramid', paramId);
 
         /* coonstans options = key {label, type, options} of value in params object*/
         const param = thisProduct.data.params[paramId];
-       // console.log('param options', param.options);
 
         /*Start loop for each key of value in params object*/
         for (let optionId in param.options){
