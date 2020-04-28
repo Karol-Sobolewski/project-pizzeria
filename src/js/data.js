@@ -6,6 +6,9 @@ dataSource.products = {
     name: 'Zio Stefano\'s Doughnut',
     price: 9,
     description: 'Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.',
+    amountmin: 2,
+    amountmax: 20,
+    //amount: {min: 1, max: 20},
     images: [
       '<img class="active" src="images/doughnut.svg">',
     ],
@@ -15,6 +18,9 @@ dataSource.products = {
     name: 'Zia Giulia\'s Breakfast',
     price: 9,
     description: 'There\'s no better way to start your day than indulging yourself with a cup of fresh Italian coffee and crispy waffels. Made just for you on the spot, this breakfast combo has been our guests\' favorite for over 50 years.',
+    amountmin: 2,
+    amountmax: 10,
+    //amount: {min: 2, max: 10},
     images: [
       '<img class="active" src="images/breakfast.svg">',
     ],
@@ -35,6 +41,9 @@ dataSource.products = {
     name: 'Nonna Alba\'s Pizza',
     price: 20,
     description: 'The true taste of Italy &ndash; homemade pizza as prepared by our grandmothers in old-fashoned brick ovens. Choose your favorite topping and enjoy your comfort food! All ingredients come straight from eco-friendly, trusted farms in the Italian countryside.',
+    amountmin: 1,
+    amountmax: 5,
+    //amount: {min: 1, max: 5},
     images: [
       '<img class="active" src="images/pizza/crust.svg">',
       '<img class="sauce-tomato" src="images/pizza/tomato-sauce.svg">',
@@ -45,6 +54,9 @@ dataSource.products = {
       '<img class="toppings-greenPeppers" src="images/pizza/green-peppers.svg">',
       '<img class="toppings-mushrooms" src="images/pizza/mushrooms.svg">',
       '<img class="toppings-basil" src="images/pizza/basil.svg">',
+      '<img class="toppings-bacon" src="images/pizza/bacon.svg">',
+      '<img class="toppings-corn" src="images/pizza/corn.svg">',
+      '<img class="toppings-pineapple" src="images/pizza/pineapple.svg">',
     ],
     params: {
       sauce: {
@@ -65,6 +77,9 @@ dataSource.products = {
           mushrooms: {label: 'Mushrooms', price: 2, default: true},
           basil: {label: 'Fresh basil', price: 2, default: true},
           salami: {label: 'Salami', price: 3},
+          bacon: {label: 'Bacon', price: 3},
+          corn: {label: 'Corn', price: 1},
+          pineapple: {label: 'Pineapple', price: 999},
         },
       },
       crust: {
@@ -85,6 +100,9 @@ dataSource.products = {
     name: 'Nonno Alberto\'s Salad',
     price: 9,
     description: 'A delicious salad made of fresh, home-grown products on a crispy lettuce base.',
+    amountmin: 1,
+    //amountmax: ,
+    //amount: {min: 1, max: 7},
     images: [
       '<img class="active" src="images/salad/plate.svg">',
       '<img class="ingredients-cucumber" src="images/salad/cucumber.svg" style="z-index: 1;">',
