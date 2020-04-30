@@ -299,21 +299,29 @@
       ////console.log('thisWidget.value', thisWidget.input.value);
     }
 
+
     setValue(value){
       const thisWidget = this;
       const newValue = parseInt(value);
-
+      if (thisWidget.hasOwnProperty('amount')){
       /*if new value is greater than current && if new value equal or higher settings.amountWidget.defaultMin
       new value is equal or lower than settings.amountWidget.defaultMax then:
        else new value is number or is highher than 9 and lower than 1 = new value is false -> show current value */
-      if(newValue !== thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
-        thisWidget.value = newValue;
-        thisWidget.announce();
-      } else {
-        thisWidget.value;
-      }
+        if(newValue !== thisWidget.value && newValue >= thisWidget.amount.min && newValue <= thisWidget.amount.max){
+          thisWidget.value = newValue;
+          thisWidget.announce();
+        } else {
+          thisWidget.value;
+        }
       ////console.log('thisWidget.value', thisWidget.value);
-
+      } else {
+        if(newValue !== thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
+          thisWidget.value = newValue;
+          thisWidget.announce();
+        } else {
+          thisWidget.value;
+        }
+      }
       thisWidget.input.value = thisWidget.value;
       //console.log('newValue', newValue);
     }
