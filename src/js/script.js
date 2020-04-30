@@ -252,7 +252,8 @@
     initAmountWidget(){
       const thisProduct = this;
 
-      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem, thisProduct.data.amount);
+      console.log(thisProduct);
       thisProduct.amountWidgetElem.addEventListener('updated', function(event){
         event.preventDefault();
         thisProduct.processOrder();
@@ -271,11 +272,13 @@
   }
 
   class AmountWidget{
-    constructor(element){
+    constructor(element, amount){
       const thisWidget = this;
 
       thisWidget.element = element;
+      thisWidget.amount = amount;
 
+      console.log(thisWidget.amount);
       thisWidget.getElements(element);
       thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
