@@ -435,7 +435,7 @@
       fetch(url, options)
         .then(response => response.json())
         .then(parsedResponse => {
-          //console.log('parsedResponse', parsedResponse, thisCart.dom.form.phone);
+          console.log('parsedResponse', parsedResponse, thisCart.dom.form.phone);
         });
     }
   }
