@@ -252,7 +252,6 @@
       });
     }
 
-
     addToCart(){
       const thisProduct = this;
 
@@ -417,13 +416,20 @@
       const url = settings.db.url + '/' + settings.db.order;
 
       const payload = {
-        address: thisCart.dom.form.address,
-        phone: thisCart.dom.form.phone,
-        totalPrice: thisCart.totalPrice,
+        address: thisCart.dom.form.address.value,
+        phone: thisCart.dom.form.phone.value,
+        products: [],
         totalNumber: thisCart.totalNumber,
         subtotalPrice: thisCart.subtotalPrice,
         deliveryFee: thisCart.deliveryFee,
+        totalPrice: thisCart.totalPrice,
       };
+
+      for(let product in thisCart.products){
+        console.log('product', thisCart.products[product]);
+        const productOrder = thisCart.products[product].getData();
+        payload.products.push(productOrder);
+      }
 
       const options = {
         method: 'POST',
@@ -466,6 +472,17 @@
       thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+    }
+
+    getData(){
+      const thisCartProduct = this;
+      const obj = {
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        priceSingle: thisCartProduct.priceSingle,
+        params: thisCartProduct.params,
+      };
+      return obj;
     }
 
     initAmountWidget(){
