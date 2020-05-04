@@ -376,19 +376,62 @@
     add(menuProduct){
       const thisCart = this;
       const generateHTML = templates.cartProduct(menuProduct);
+      console.log('html', generateHTML);
       const generatedDOM = utils.createDOMFromHTML(generateHTML);
+      console.log('dom', generatedDOM);
       thisCart.dom.productList.appendChild(generatedDOM);
+      //console.log('thisCart.dom.productList', thisCart.dom.productList);
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      thisCart.update();
+      console.log('before', menuProduct.data);
+
+      const url = settings.db.url + '/' + settings.db.product;
+      fetch(url)
+        .then(function(rawResponse){
+          return rawResponse.json();
+        })
+        .then(function(parsedResponse){
+          //console.log('parsed', parsedResponse[0].id);
+          //console.log(menuProduct.data.id);
+          for(let product in parsedResponse){
+            if(parsedResponse[product].id === menuProduct.data.id) {
+              console.log('true');
+              console.log(parsedResponse[product].id);
+              menuProduct.data = parsedResponse[product];
+              //console.log('after', menuProduct.data);
+              const generateproductHTML = templates.menuProduct(menuProduct.data);
+              //console.log('html', generateproductHTML);
+              thisCart.element = utils.createDOMFromHTML(generateproductHTML);
+              //console.log('elem', thisCart.element);
+              //console.log(document.getElementById(menuProduct.data.id));
+
+              const menuContainer = document.querySelector(select.containerOf.menu);
+              console.log('menuContainer', menuContainer);
+              /* add element to menu*/
+              const sp2 = document.querySelector(select.all.menuProductsActive);
+              console.log('sp2', sp2);
+              menuContainer.replaceChild(thisCart.element, sp2);
+              thisCart.update();
+              console.log('aftermenucontainer', menuContainer);
+
+            }
+          }
+        });
+
+      //thisCart.update();
     }
 
     remove(cartProduct){
       const thisCart = this;
-      const index = thisCart.products.indexOf(cartProduct);
+      const index = thisCart.products.indexOf('cartProduct');
+      console.log('index',  index);
       thisCart.products.splice(index);
-      cartProduct.dom.wrapper.remove(cartProduct);
+      console.log('thisCart.products',   thisCart.products);
+      cartProduct.dom.wrapper.remove();
+      console.log('thiscart dom wrapper',  cartProduct.dom);
+      //console.log(cartProduct.dom.wrapper.remove);
+      console.log('cartProduct4',  cartProduct);
       thisCart.update();
-      console.log('cartProduct', cartProduct);
+
     }
 
     update(){
@@ -414,7 +457,6 @@
     sendOrder(){
       const thisCart = this;
       const url = settings.db.url + '/' + settings.db.order;
-
       const payload = {
         address: thisCart.dom.form.address.value,
         phone: thisCart.dom.form.phone.value,
@@ -429,6 +471,7 @@
         console.log('product', thisCart.products[product]);
         const productOrder = thisCart.products[product].getData();
         payload.products.push(productOrder);
+        thisCart.update();
       }
 
       const options = {
@@ -443,7 +486,9 @@
         .then(parsedResponse => {
           console.log('parsedResponse', parsedResponse, thisCart.dom.form.phone);
         });
+      thisCart.update();
     }
+
   }
 
   class CartProduct{
@@ -520,6 +565,7 @@
         },
       });
       thisCartProduct.dom.wrapper.dispatchEvent(event);
+      console.log( thisCartProduct);
     }
   }
 
@@ -542,7 +588,7 @@
         .catch((error) => {
           console.warn('CONNECTION ERROR', error);
         });
-      //console.log('thisApp.data', JSON.stringify(thisApp.data));
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
       //CODE ADDED END
     },
     initMenu: function(){
