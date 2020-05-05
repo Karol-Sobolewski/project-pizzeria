@@ -255,10 +255,23 @@
     addToCart(){
       const thisProduct = this;
 
-      thisProduct.name = thisProduct.data.name;
-      thisProduct.amount = thisProduct.amountWidget.value;
+      const thisProductCopy = JSON.parse(JSON.stringify(thisProduct));
 
-      app.cart.add(thisProduct);
+      thisProductCopy.name = thisProductCopy.data.name;
+      thisProductCopy.amount = thisProductCopy.amountWidget.value;
+
+      app.cart.add(thisProductCopy);
+
+      thisProduct.reset();
+    }
+
+    reset() {
+      const thisProduct = this;
+      thisProduct.form.reset();
+      thisProduct.amountWidget.value = 1;
+      thisProduct.amountWidget.input.value = 1;
+      console.log('hisProduct.amountWidget.value', thisProduct.amountWidget);
+      thisProduct.processOrder();
     }
   }
 
@@ -384,40 +397,7 @@
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       console.log('before', menuProduct.data);
 
-      const url = settings.db.url + '/' + settings.db.product;
-      fetch(url)
-        .then(function(rawResponse){
-          return rawResponse.json();
-        })
-        .then(function(parsedResponse){
-          //console.log('parsed', parsedResponse[0].id);
-          //console.log(menuProduct.data.id);
-          for(let product in parsedResponse){
-            if(parsedResponse[product].id === menuProduct.data.id) {
-              console.log('true');
-              console.log(parsedResponse[product].id);
-              menuProduct.data = parsedResponse[product];
-              //console.log('after', menuProduct.data);
-              const generateproductHTML = templates.menuProduct(menuProduct.data);
-              //console.log('html', generateproductHTML);
-              thisCart.element = utils.createDOMFromHTML(generateproductHTML);
-              //console.log('elem', thisCart.element);
-              //console.log(document.getElementById(menuProduct.data.id));
-
-              const menuContainer = document.querySelector(select.containerOf.menu);
-              console.log('menuContainer', menuContainer);
-              /* add element to menu*/
-              const sp2 = document.querySelector(select.all.menuProductsActive);
-              console.log('sp2', sp2);
-              menuContainer.replaceChild(thisCart.element, sp2);
-              thisCart.update();
-              console.log('aftermenucontainer', menuContainer);
-
-            }
-          }
-        });
-
-      //thisCart.update();
+      thisCart.update();
     }
 
     remove(cartProduct){
@@ -430,6 +410,16 @@
       console.log('thiscart dom wrapper',  cartProduct.dom);
       //console.log(cartProduct.dom.wrapper.remove);
       console.log('cartProduct4',  cartProduct);
+      thisCart.update();
+
+    }
+
+    reset(){
+      const thisCart = this;
+      thisCart.products = [];
+      thisCart.dom.form.reset();
+      thisCart.deliveryFee = 0;
+      thisCart.dom.productList.innerHTML = '';
       thisCart.update();
 
     }
@@ -485,8 +475,9 @@
         .then(response => response.json())
         .then(parsedResponse => {
           console.log('parsedResponse', parsedResponse, thisCart.dom.form.phone);
+          thisCart.reset();
+          thisCart.update();
         });
-      thisCart.update();
     }
 
   }
