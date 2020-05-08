@@ -23,7 +23,6 @@ class CartProduct{
 
     thisCartProduct.dom.wrapper = element;
     thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
-    //console.log(' thisCartProduct.dom.amountWidget',  thisCartProduct.dom.amountWidget);
     thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
     thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
     thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
@@ -47,7 +46,8 @@ class CartProduct{
     thisCartProduct.dom.amountWidget.addEventListener('updated', function(event){
       event.preventDefault();
 
-      thisCartProduct.amount = thisCartProduct.amountWidget.value;
+      thisCartProduct.amount = thisCartProduct.amountWidget.correctValue;
+      console.log(' thisCartProduct.correctValue', thisCartProduct);
       thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
     });
@@ -75,7 +75,7 @@ class CartProduct{
       },
     });
     thisCartProduct.dom.wrapper.dispatchEvent(event);
-    console.log( thisCartProduct);
+    //console.log( thisCartProduct);
   }
 }
 

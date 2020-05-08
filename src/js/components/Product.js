@@ -149,7 +149,7 @@ class Product{
     }
 
     thisProduct.priceSingle = price;
-    thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+    thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.correctValue;
     thisProduct.priceElem.innerHTML = thisProduct.price;
 
     /* End of processOrder */
@@ -171,7 +171,7 @@ class Product{
     const thisProductCopy = JSON.parse(JSON.stringify(thisProduct));
 
     thisProductCopy.name = thisProductCopy.data.name;
-    thisProductCopy.amount = thisProductCopy.amountWidget.value;
+    thisProductCopy.amount = thisProductCopy.amountWidget.correctValue;
 
     //app.cart.add(thisProductCopy);
 
@@ -190,7 +190,7 @@ class Product{
     const thisProduct = this;
     thisProduct.form.reset();
     thisProduct.amountWidget.value = 1;
-    thisProduct.amountWidget.input.value = 1;
+    //thisProduct.amountWidget.input.value = 1;
     console.log('hisProduct.amountWidget.value', thisProduct.amountWidget);
     thisProduct.processOrder();
   }

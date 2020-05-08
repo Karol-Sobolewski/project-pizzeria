@@ -20,6 +20,8 @@ class Cart{
     thisCart.dom.productList = document.querySelector(select.containerOf.cart);
     thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+    console.log(' thisCart.dom.form',  thisCart.dom.form);
+    //correctValue
     thisCart.dom.form.phone = thisCart.dom.wrapper.querySelector(select.cart.phone.value);
     thisCart.dom.form.address = thisCart.dom.wrapper.querySelector(select.cart.address.value);
 
@@ -53,13 +55,13 @@ class Cart{
   add(menuProduct){
     const thisCart = this;
     const generateHTML = templates.cartProduct(menuProduct);
-    console.log('html', generateHTML);
+    //console.log('html', generateHTML);
     const generatedDOM = utils.createDOMFromHTML(generateHTML);
-    console.log('dom', generatedDOM);
+    //console.log('dom', generatedDOM);
     thisCart.dom.productList.appendChild(generatedDOM);
     //console.log('thisCart.dom.productList', thisCart.dom.productList);
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    console.log('before', menuProduct.data);
+    //console.log('before', menuProduct.data);
 
     thisCart.update();
   }
@@ -67,13 +69,13 @@ class Cart{
   remove(cartProduct){
     const thisCart = this;
     const index = thisCart.products.indexOf('cartProduct');
-    console.log('index',  index);
+    //console.log('index',  index);
     thisCart.products.splice(index);
-    console.log('thisCart.products',   thisCart.products);
+    //console.log('thisCart.products',   thisCart.products);
     cartProduct.dom.wrapper.remove();
-    console.log('thiscart dom wrapper',  cartProduct.dom);
+    //console.log('thiscart dom wrapper',  cartProduct.dom);
     //console.log(cartProduct.dom.wrapper.remove);
-    console.log('cartProduct4',  cartProduct);
+    //console.log('cartProduct4',  cartProduct);
     thisCart.update();
 
   }
@@ -85,8 +87,8 @@ class Cart{
     thisCart.deliveryFee = 0;
     const cartElement = document.getElementsByClassName('cart__order-summary');
     cartElement.innerHTML = '';
-    console.log('cartElement', cartElement);
-    console.log('cartElement.dom.productList', thisCart.dom.productList);
+    //console.log('cartElement', cartElement);
+    //console.log('cartElement.dom.productList', thisCart.dom.productList);
     //cartElement.dom.productList.innerHTML = '';
     thisCart.update();
 
@@ -101,7 +103,7 @@ class Cart{
       //console.log('thisCart', product);
       thisCart.subtotalPrice += product.price;
       thisCart.totalNumber +=  product.amount;
-
+      //console.log(  product );
     }
     thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
 
@@ -126,7 +128,7 @@ class Cart{
     };
 
     for(let product in thisCart.products){
-      console.log('product', thisCart.products[product]);
+      //console.log('product', thisCart.products[product]);
       const productOrder = thisCart.products[product].getData();
       payload.products.push(productOrder);
       thisCart.update();
@@ -143,7 +145,7 @@ class Cart{
       .then(response => response.json())
       .then(parsedResponse => {
         console.log('parsedResponse', parsedResponse, thisCart.dom.form.phone);
-        thisCart.reset();
+        //thisCart.reset();
         thisCart.update();
       });
   }
