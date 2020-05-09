@@ -1,4 +1,8 @@
 {
+    "globals": {
+        "rangeSlider": true,
+        "flatpickr": true
+    },
     "env": {
         "browser": true,
         "es6": true

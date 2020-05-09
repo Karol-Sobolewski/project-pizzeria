@@ -145,7 +145,7 @@ class Cart{
       .then(response => response.json())
       .then(parsedResponse => {
         console.log('parsedResponse', parsedResponse, thisCart.dom.form.phone);
-        //thisCart.reset();
+        thisCart.reset();
         thisCart.update();
       });
   }

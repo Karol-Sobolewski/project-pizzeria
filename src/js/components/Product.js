@@ -160,6 +160,7 @@ class Product{
 
     thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem, thisProduct.data.amount);
     thisProduct.amountWidgetElem.addEventListener('updated', function(event){
+      console.log('add');
       event.preventDefault();
       thisProduct.processOrder();
     });
