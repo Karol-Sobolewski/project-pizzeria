@@ -6,18 +6,16 @@ import HourPicker from './HourPicker.js';
 import FloorPlan from './FloorPlan.js';
 
 class Booking{
-  constructor(element){
+  constructor(element, tables){
     const thisBooking = this;
-
-    thisBooking.render(element);
+    thisBooking.render(element, tables);
     thisBooking.initWidgets();
-    console.log('booking element', thisBooking.dom.tables);
   }
 
-  render(element){
+  render(element, tables){
     const thisBooking = this;
 
-    const generateHTML = templates.bookingWidget();
+    const generateHTML = templates.bookingWidget({ tables: tables });
     //console.log(generateHTML);
     thisBooking.dom = {};
     thisBooking.dom.wrapper = element;

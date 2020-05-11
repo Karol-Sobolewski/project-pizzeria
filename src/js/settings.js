@@ -107,8 +107,8 @@ export const settings = {
   },
   //CODE ADDED END
   amountWidget: {
-    defaultValue: 5,
-    defaultMin: 1,
+    defaultValue: 1,
+    defaultMin: 2,
     defaultMax: 9,
   },
   //CODE ADDED START

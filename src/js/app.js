@@ -74,11 +74,11 @@ const app = {
         thisApp.initMenu();
 
       });
+
     fetch(url + '/' + settings.db.booking)
       .then(rawResponse => rawResponse.json())
       .then(parsedResponse => {
         thisApp.data.booking = parsedResponse;
-
         thisApp.initBooking();
       })
       .catch((error) => {
@@ -101,20 +101,8 @@ const app = {
     const thisApp = this;
     const bookingElem = document.querySelector(select.containerOf.booking);
 
-    thisApp.booking = new Booking(bookingElem);
-
     const tables = thisApp.data.booking[0].tables;
-    console.log('thisApp.data.booking', thisApp.data.booking);
-    console.log('tables array', tables);
-    for(let table in tables){
-      console.log('tables', tables[table]);
-
-      //thisApp.booking.dom.tables.innerHTML(tables[table]);
-
-      //new Booking(tables[table]);
-      //inner html? new Booking?
-      //new Booking(tables[table]);
-    }
+    thisApp.booking = new Booking(bookingElem, tables);
 
     console.log('bookingElem', thisApp.booking);
   },
@@ -145,4 +133,3 @@ const app = {
 };
 
 app.init();
-

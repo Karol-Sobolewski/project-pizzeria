@@ -17,7 +17,7 @@ class Cart{
     thisCart.dom.wrapper = element;
 
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-    thisCart.dom.productList = document.querySelector(select.containerOf.cart);
+    thisCart.dom.productList = document.querySelector(select.cart.productList);
     thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
     //console.log(' thisCart.dom.form',  thisCart.dom.form);
@@ -61,8 +61,9 @@ class Cart{
     thisCart.dom.productList.appendChild(generatedDOM);
     //console.log('thisCart.dom.productList', thisCart.dom.productList);
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    //console.log('before', menuProduct.data);
+    console.log('thisCart', thisCart.dom.productList);
 
+    thisCart.dom.wrapper.classList.add('active');
     thisCart.update();
   }
 
@@ -76,6 +77,7 @@ class Cart{
     //console.log('thiscart dom wrapper',  cartProduct.dom);
     //console.log(cartProduct.dom.wrapper.remove);
     //console.log('cartProduct4',  cartProduct);
+    //thisCart.dom.wrapper.classList.toggle('active');
     thisCart.update();
 
   }
@@ -85,11 +87,7 @@ class Cart{
     thisCart.products = [];
     thisCart.dom.form.reset();
     thisCart.deliveryFee = 0;
-    const cartElement = document.getElementsByClassName('cart__order-summary');
-    cartElement.innerHTML = '';
-    //console.log('cartElement', cartElement);
-    //console.log('cartElement.dom.productList', thisCart.dom.productList);
-    //cartElement.dom.productList.innerHTML = '';
+    thisCart.dom.productList.innerHTML = '';
     thisCart.update();
 
   }

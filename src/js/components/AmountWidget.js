@@ -2,8 +2,20 @@ import {select, settings} from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget{
-  constructor(element){
-    super(element, settings.amountWidget.defaultValue);
+  constructor(element, amount) {
+    super(element, amount ? amount.min : settings.amountWidget.defaultValue);
+
+    if(!amount) {
+      const thisWidget = this;
+      thisWidget.amount = {
+        min: settings.amountWidget.defaultMin,
+        max: settings.amountWidget.defaultMax
+      };
+    } else {
+      const thisWidget = this;
+      thisWidget.amount = amount;
+      console.log(' thisWidget.amount',  thisWidget.amount);
+    }
 
     const thisWidget = this;
 
@@ -16,6 +28,8 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
+    console.log('thisWidgetxd', thisWidget);
+    thisWidget.dom.input.value = thisWidget.amount.min;
   }
 
   initActions(){
@@ -44,14 +58,14 @@ class AmountWidget extends BaseWidget{
 
   isValid(value){
     return !isNaN(value)
-    && value >= settings.amountWidget.defaultMin
-    && value <= settings.amountWidget.defaultMax;
+    && value >= this.amount.min
+    && value <= this.amount.max;
   }
 
   renderValue(){
     const thisWidget = this;
     thisWidget.dom.input.value = thisWidget.value;
-    //console.log('x', thisWidget.dom.input.value);
+    console.log('x', thisWidget.dom.input.value);
   }
 
 

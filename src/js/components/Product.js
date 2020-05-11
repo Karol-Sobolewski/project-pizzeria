@@ -160,7 +160,6 @@ class Product{
 
     thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem, thisProduct.data.amount);
     thisProduct.amountWidgetElem.addEventListener('updated', function(event){
-      //console.log('add');
       event.preventDefault();
       thisProduct.processOrder();
     });
@@ -190,9 +189,7 @@ class Product{
   reset() {
     const thisProduct = this;
     thisProduct.form.reset();
-    thisProduct.amountWidget.value = 1;
-    //thisProduct.amountWidget.input.value = 1;
-    console.log('hisProduct.amountWidget.value', thisProduct.amountWidget);
+    //console.log('hisProduct.amountWidget.value', thisProduct.amountWidget);
     thisProduct.processOrder();
   }
 }
