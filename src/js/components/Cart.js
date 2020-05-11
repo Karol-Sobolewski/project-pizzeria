@@ -20,7 +20,7 @@ class Cart{
     thisCart.dom.productList = document.querySelector(select.containerOf.cart);
     thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
-    console.log(' thisCart.dom.form',  thisCart.dom.form);
+    //console.log(' thisCart.dom.form',  thisCart.dom.form);
     //correctValue
     thisCart.dom.form.phone = thisCart.dom.wrapper.querySelector(select.cart.phone.value);
     thisCart.dom.form.address = thisCart.dom.wrapper.querySelector(select.cart.address.value);

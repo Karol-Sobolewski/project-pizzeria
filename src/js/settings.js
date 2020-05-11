@@ -11,6 +11,7 @@ export const select = {
     cart: '#cart',
     pages: '#pages', // CODE ADDED
     booking: '.booking-wrapper', // CODE ADDED
+    //floorPlan: '.floor-plan',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -66,7 +67,8 @@ export const select = {
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
-    tables: '.floor-plan .table',
+    tables: '.floor-plan',
+    //tables: '.floor-plan .table',
   },
   nav: {
     links: '.main-nav a',
@@ -105,7 +107,7 @@ export const settings = {
   },
   //CODE ADDED END
   amountWidget: {
-    defaultValue: 1,
+    defaultValue: 5,
     defaultMin: 1,
     defaultMax: 9,
   },
@@ -129,6 +131,7 @@ export const settings = {
     //CODE ADDED START
     booking: 'booking',
     event: 'event',
+    floorPlan: 'floorPlan',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',

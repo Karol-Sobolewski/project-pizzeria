@@ -24,7 +24,7 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.input.addEventListener('change', function(event){
       event.preventDefault();
       /*still reloads after pressing enter*/
-      console.log('change');
+      //console.log('change');
       thisWidget.value = thisWidget.dom.input.value;
       //thisWidget.dom.input.dispatchEvent(event);
     });

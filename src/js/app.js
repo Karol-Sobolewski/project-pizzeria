@@ -62,16 +62,24 @@ const app = {
     const thisApp = this;
     thisApp.data = {}; //CODE CHANGED
     //CODE ADDED START
-    const url = settings.db.url + '/' + settings.db.product;
-    fetch(url)
+    const url = settings.db.url;
+    fetch(url + '/' + settings.db.product)
       .then(rawResponse => rawResponse.json())
       .then(parsedResponse => {
-      //console.log('parsed response', parsedResponse);
 
         /* save parsed response as thisApp.data.products*/
         thisApp.data.products = parsedResponse;
+
         /*execute initMenu method */
         thisApp.initMenu();
+
+      });
+    fetch(url + '/' + settings.db.booking)
+      .then(rawResponse => rawResponse.json())
+      .then(parsedResponse => {
+        thisApp.data.booking = parsedResponse;
+
+        thisApp.initBooking();
       })
       .catch((error) => {
         console.warn('CONNECTION ERROR', error);
@@ -84,13 +92,31 @@ const app = {
 
     for(let productData in thisApp.data.products){
       //new Product(productData, thisApp.data.products[productData]);
+      //console.log('productData',  thisApp.data.products);
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
+
     }
   },
   initBooking: function(){
     const thisApp = this;
     const bookingElem = document.querySelector(select.containerOf.booking);
+
     thisApp.booking = new Booking(bookingElem);
+
+    const tables = thisApp.data.booking[0].tables;
+    console.log('thisApp.data.booking', thisApp.data.booking);
+    console.log('tables array', tables);
+    for(let table in tables){
+      console.log('tables', tables[table]);
+
+      //thisApp.booking.dom.tables.innerHTML(tables[table]);
+
+      //new Booking(tables[table]);
+      //inner html? new Booking?
+      //new Booking(tables[table]);
+    }
+
+    console.log('bookingElem', thisApp.booking);
   },
 
   initCart: function(){
@@ -115,7 +141,6 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
-    thisApp.initBooking();
   },
 };
 

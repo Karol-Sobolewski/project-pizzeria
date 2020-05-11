@@ -270,5 +270,50 @@
       "starters": ["lemonWater"]
     }
   ],
-  "booking": []
+  "booking": [
+    {
+      "tables": [
+        {
+          "id": 1,
+          "class": "object table",
+          "label": "table-1",
+          "capacity": {
+            "min": 4,
+            "max": 9
+          }
+        },
+        {
+          "id": 2,
+          "class": "object table table--round",
+          "label": "table-2",
+          "capacity": {
+            "min": 2,
+            "max": 6
+          }
+        },
+        {
+          "id": 3,
+          "class": "object table",
+          "label": "table-3",
+          "capacity": {
+            "min": 1,
+            "max": 4
+          }
+        }
+      ]
+    },
+    {
+      "starters": {
+        "water": {
+          "label": "Water",
+          "price": 1,
+          "default": true
+        },
+        "bread": {
+          "label": "Bread",
+          "price": 1
+        }
+      }
+    }
+  ]
 }
