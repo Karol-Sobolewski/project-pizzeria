@@ -14,7 +14,7 @@ class AmountWidget extends BaseWidget{
     } else {
       const thisWidget = this;
       thisWidget.amount = amount;
-      console.log(' thisWidget.amount',  thisWidget.amount);
+      //console.log(' thisWidget.amount',  thisWidget.amount);
     }
 
     const thisWidget = this;
@@ -28,7 +28,7 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
-    console.log('thisWidgetxd', thisWidget);
+    //console.log('thisWidgetxd', thisWidget);
     thisWidget.dom.input.value = thisWidget.amount.min;
   }
 
@@ -40,7 +40,7 @@ class AmountWidget extends BaseWidget{
       /*still reloads after pressing enter*/
       //console.log('change');
       thisWidget.value = thisWidget.dom.input.value;
-      //thisWidget.dom.input.dispatchEvent(event);
+      //console.log('thisWidget.value2', thisWidget.value);
     });
     thisWidget.dom.linkDecrease.addEventListener('click', function(event){
       event.preventDefault();
@@ -64,8 +64,10 @@ class AmountWidget extends BaseWidget{
 
   renderValue(){
     const thisWidget = this;
-    thisWidget.dom.input.value = thisWidget.value;
-    console.log('x', thisWidget.dom.input.value);
+    //thisWidget.dom.input.value = thisWidget.value;
+
+    //console.log('x', thisWidget.dom.input.value);
+    console.log('thisWidget.value', thisWidget.value);
   }
 
 

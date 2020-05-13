@@ -75,10 +75,10 @@ const app = {
 
       });
 
-    fetch(url + '/' + settings.db.booking)
+    fetch(url + '/' + settings.db.floorPlan)
       .then(rawResponse => rawResponse.json())
       .then(parsedResponse => {
-        thisApp.data.booking = parsedResponse;
+        thisApp.data.floorPlan = parsedResponse;
         thisApp.initBooking();
       })
       .catch((error) => {
@@ -101,10 +101,10 @@ const app = {
     const thisApp = this;
     const bookingElem = document.querySelector(select.containerOf.booking);
 
-    const tables = thisApp.data.booking[0].tables;
-    thisApp.booking = new Booking(bookingElem, tables);
+    const allTables = thisApp.data.floorPlan[0].tables;
+    thisApp.booking = new Booking(bookingElem, allTables);
 
-    console.log('bookingElem', thisApp.booking);
+    console.log('tables', allTables);
   },
 
   initCart: function(){
