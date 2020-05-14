@@ -1,0 +1,215 @@
+.main-container {
+  background-color: $color-light;
+  height: 1258px;
+  border-radius: $radius;
+  margin-top: 42px;
+}
+
+// FIRST ROW
+.first-row {
+  @include flex(row, flex-start, center);
+}
+
+.order .first-row-btn {
+  background-image: url('/images/assets/pizza-1.jpg');
+  background-size: 299px 119px;
+}
+
+.book .first-row-btn {
+  background-image: url('/images/assets/pizza-2.jpg');
+  margin-left: 6px;
+}
+
+.first-row-btn {
+  margin-top: 63px;
+  width: 294px;
+  height: 119px;
+  border-radius: $radius;
+  border-color: $color-light;
+  background-color: $color-dark;
+  color: $color-light;
+  font-family: $font-header;
+  letter-spacing: -0.65px;
+  padding: 0;
+
+  h2 {
+    text-transform: uppercase;
+    margin-bottom: 0;
+    line-height: 70px;
+    font-size: 26px;
+    transition: $transition;
+  }
+
+  p {
+    font-size: $home-size;
+    font-family: $font-text;
+    font-weight: 400;
+    opacity: 0;
+    transition: $transition;
+  }
+}
+
+.first-row-btn:hover {
+  h2 {
+    color: $color-light;
+    line-height: 40px;
+  }
+
+  p {
+    color: $color-light;
+    line-height: 40px;
+    opacity: 1;
+  }
+}
+
+// SECOND ROW
+.second-row {
+  @include flex(row, flex-start, center);
+  margin-top: 6px;
+}
+
+.opening {
+  text-align: center;
+  margin: 0;
+  width: 594px;
+  height: 120px;
+  background-color: $color-main;
+  border-radius: $radius;
+  font-family: $font-header;
+  text-transform: uppercase;
+  color: $color-light;
+
+  h3 {
+    font-size: 26px;
+    letter-spacing: -0.65px;
+    margin-top: 32px;
+    margin-bottom: 0;
+  }
+
+  p {
+    font-family: $font-text;
+    font-size: $home-size;
+    font-weight: $font-light;
+    margin-top: 0;
+  }
+}
+
+// THIRD OW
+.third-row {
+  @include flex(row, flex-start, center);
+  margin-top: 102px;
+  width: 604;
+  margin-left: 34;
+}
+
+.image {
+  background-image: url("/images/assets/pizza-3.jpg");
+  width: 193px;
+  height: 193px;
+  background-size: cover;
+}
+
+.quotes {
+  width: 367px;
+
+  ul {
+    padding-left: 70px;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.quote-title {
+  color: $color-dark;
+  font-family: $font-text;
+  font-size: $home-size;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.quote-content {
+  color: $color-dark;
+  font-family: $font-text;
+  font-size: $home-size;
+  font-weight: $font-normal;
+  line-height: 23px;
+}
+
+.quote-author {
+  color: $color-dark;
+  font-family: $font-text;
+  font-size: $home-size;
+  font-style: italic;
+  line-height: 23px;
+}
+
+.images-fist-row {
+  margin-top: 80px;
+}
+
+.images-fist-row, .images-second-row {
+  @include flex(row, flex-start, center);
+
+  img {
+    width: 193px;
+    height: 193px;
+    margin: 6px;
+    border-radius: $radius;
+  }
+}
+
+.image-gallery {
+  position: relative;
+  @include flex(row, flex-start, center);
+}
+
+.image-gallery img {
+  -webkit-filter: brightness(100%);
+}
+
+.image-gallery:hover {
+  img {
+    -webkit-filter: brightness(50%);
+    transition: $transition;
+  }
+
+  .icons {
+    opacity: 1;
+  }
+}
+
+.icons {
+  top: 40%;
+  font-size: 20px;
+  color: $color-light;
+  position: absolute;
+  letter-spacing: .2em;
+  opacity: 0;
+  transition: opacity 0.5 ease;
+}
+
+.heart, .branch{
+  color: $color-light;
+  transition: $transition;
+}
+
+.heart:hover, .branch:hover {
+  color: $color-main;
+}
+
+.footer {
+  margin-top: 12px;
+}
+
+.footer a{
+  margin-left: 28px;
+  padding-bottom: 40px;
+  color: $color-main;
+  font-family: $font-text;
+  font-size: $home-size;
+  font-weight: $font-normal;
+  line-height: 23px;
+}

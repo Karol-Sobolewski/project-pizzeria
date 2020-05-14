@@ -1,0 +1,50 @@
+.carousel{
+  width: 367px;
+}
+
+.quote {
+  color: rgba(0,0,0,.1);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.carousel {
+  padding-bottom: 60px;
+}
+
+.carousel .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+}
+
+.carousel .carousel-inner .active {
+  opacity: 1;
+  -webkit-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+}
+
+.carousel .carousel-indicators {
+  bottom: 10px;
+}
+
+.carousel .carousel-indicators > li {
+  background-color: #cdcdcd;
+  margin-left: 12px;
+  border: none;
+}
+
+blockquote {
+  width: 400px;
+  text-align: left;
+  border: none;
+}
+
+.profile-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 100px;
+}
