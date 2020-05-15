@@ -96,7 +96,7 @@ class Product{
     const thisProduct = this;
 
     const formData = utils.serializeFormToObject(thisProduct.form);
-
+    console.log(formData);
     thisProduct.params = {};
 
     let price = thisProduct.data.price;
@@ -114,7 +114,6 @@ class Product{
         /* check if formData has property paramId and if that param id has index of optionId*/
 
         const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
-
         /*START IF: if option is selected and option is not default else if option is not selected and option is default*/
         if(optionSelected && !option.default){
           price += option.price;

@@ -68,6 +68,7 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables:  '.floor-plan .table',
+    starters: '.starter-options',
     form: '.booking-form',
   },
   nav: {
@@ -88,6 +89,7 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
+    tableBookedSvr: 'bookedSvr',
   },
   nav: {
     active: 'active',
@@ -108,7 +110,7 @@ export const settings = {
   //CODE ADDED END
   amountWidget: {
     defaultValue: 1,
-    defaultMin: 2,
+    defaultMin: 1,
     defaultMax: 9,
   },
   //CODE ADDED START
