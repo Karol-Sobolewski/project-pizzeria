@@ -162,31 +162,25 @@ class Booking{
     const tables = thisBooking.dom.tables;
     console.log('tablesarray', thisBooking.dom.tables);
     let bookedTable = '';
-
     for(let table of tables){
       table.addEventListener('click', function(){
-
-
         console.log(table, 'table clicked');
-        const activeTables = document.querySelectorAll('.table.booked');
+        if(!table.classList.contains(classNames.booking.tableBookedSvr)){
+          console.log(table.classList.contains(classNames.booking.tableBookedSvr));
+          const activeTables = document.querySelectorAll('.table.booked');
+          for (let activeTable of activeTables){
+            activeTable.classList.remove(classNames.booking.tableBooked);
+          }
+          table.classList.add(classNames.booking.tableBooked);
+          //table.classList.add(classNames.booking.tableBooked);
 
-        for (let activeTable of activeTables){
-          activeTable.classList.remove(classNames.booking.tableBooked);
+          bookedTable = table.getAttribute(settings.booking.tableIdAttribute);
+          console.log('bookedTable', bookedTable);
+          //console.log('activeTables', bookedTable)
+          thisBooking.table = bookedTable;
         }
-
-
-        table.classList.add(classNames.booking.tableBooked);
-        //table.classList.add(classNames.booking.tableBooked);
-        bookedTable = table.getAttribute(settings.booking.tableIdAttribute);
-        console.log('bookedTable', bookedTable);
-        //console.log('activeTables', bookedTable);
-
-
-        thisBooking.table = bookedTable;
-
       });
     }
-
 
     thisBooking.hourPicker.dom.input.addEventListener('input', function() {
       if (bookedTable.length > 0) {
@@ -203,8 +197,14 @@ class Booking{
 
     thisBooking.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
-      thisBooking.sendBooking();
+      console.log(' thisBooking.table', thisBooking.table);
+      //if(thisBooking.table.classList.contains(classNames.booking.tableBookedSvr)){
+      //alert('empty');
+      //}
+      //event.preventDefault();
+      //thisBooking.sendBooking();
     });
+
   }
 
   getSelectedCheckboxValues(name) {
@@ -221,7 +221,7 @@ class Booking{
     const url = settings.db.url + '/' + settings.db.booking;
     const payload = {
       id: '',
-      table: parseInt(thisBooking.table),
+      table: thisBooking.table,
       date: thisBooking.datePicker.correctValue,
       hour:thisBooking.hourPicker.correctValue,
       duration: thisBooking.hoursAmount.correctValue,
