@@ -36,14 +36,13 @@ const app = {
         thisApp.activatePage(id);
 
         /* change url hash */
-
         window.location.hash = '#/' + id;
       });
     }
   },
 
   activatePage: function(pageId){
-    const thisApp =this;
+    const thisApp = this;
 
     /* add class 'active' to matching pages, remove from non-matchig */
     for(let page of thisApp.pages){
@@ -58,10 +57,10 @@ const app = {
       );
     }
   },
+
   initData: function(){
     const thisApp = this;
-    thisApp.data = {}; //CODE CHANGED
-    //CODE ADDED START
+    thisApp.data = {};
     const url = settings.db.url;
     fetch(url + '/' + settings.db.product)
       .then(rawResponse => rawResponse.json())
@@ -85,8 +84,8 @@ const app = {
         console.warn('CONNECTION ERROR', error);
       });
     console.log('thisApp.data', JSON.stringify(thisApp.data));
-    //CODE ADDED END
   },
+
   initMenu: function(){
     const thisApp = this;
 
@@ -97,6 +96,7 @@ const app = {
 
     }
   },
+
   initBooking: function(){
     const thisApp = this;
     const bookingElem = document.querySelector(select.containerOf.booking);
@@ -118,6 +118,39 @@ const app = {
       app.cart.add(event.detail.product);
     });
   },
+
+  initCarousel: function(){
+
+    let slideIndex = 0;
+    function showSlides(){
+      let i;
+
+      const slides = document.getElementsByClassName('carousel');
+      const indicators = document.getElementsByClassName('indicator');
+
+      for (i =0; i < slides.length; i ++){
+        slides[i].style.opacity = 0;
+      }
+
+      slideIndex++;
+      //console.log('slideIndex', slideIndex);
+
+      if(slideIndex > slides.length){
+        slideIndex = 1;
+      }
+
+      for (i =0; i < indicators.length; i ++){
+        indicators[i].className = indicators[i].className.replace(' indicator-active', '');
+      }
+
+      slides[slideIndex -1].style.opacity = 1;
+      indicators[slideIndex -1].className += ' indicator-active';
+
+      setTimeout(showSlides, 3000);
+    }
+    showSlides();
+  },
+
   init: function(){
     const thisApp = this;
     //console.log('*** App starting ***');
@@ -129,6 +162,7 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initCarousel();
   },
 };
 

@@ -157,7 +157,7 @@
 
     }
 
-    &.bookedSvr{
+    &.booked{
       cursor: not-allowed;
       color: lighten($color-dark, 40%);
 
@@ -173,7 +173,7 @@
       }
     }
 
-    &.booked {
+    &.selected {
       cursor: not-allowed;
       color: lighten($color-dark, 40%);
 
@@ -184,7 +184,7 @@
         height: 100%;
         left: 0;
         top: 0;
-        background: yellow;
+        background: $color-main;
         opacity: 0.4;
       }
 

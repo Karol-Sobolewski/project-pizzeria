@@ -72,7 +72,7 @@ export const select = {
     form: '.booking-form',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.nav',
   },
   //CODE ADDED END
 };
@@ -89,7 +89,8 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
-    tableBookedSvr: 'bookedSvr',
+    tableSelected: 'selected',
+    //tableBookedSvr: 'bookedSvr',
   },
   nav: {
     active: 'active',

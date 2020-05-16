@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pizzeria</title>
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
+    rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
+<body>
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <div class="logo">
+        <a class="logo nav" href="#home">
           <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
-        </div>
-        <div class="main-nav">
-          <a href="#order">Order</a>
-          <a href="#booking">Booking</a>
-        </div>
+        </a>
         <div id="cart" class="cart">
           <div class="cart__summary">
             <span class="cart__total-number">0</span>
@@ -62,15 +60,127 @@
       </div>
     </div>
   </header>
-    <div id="pages">
-      <section id="order">
-        <div id="product-list" class="product-list container"></div>
-      </section>
-      <section id="booking">
-        <div class="booking-wrapper container"></div>
-      </section>
-    </div>
-    <script id="template-booking-widget" type="text/x-handlebars-template">
+  <div id="pages">
+    <section id="home">
+      <div class="home-wrapper container">
+        <div class="main-container">
+          <div class="first-row">
+            <button href="#order" class="order first-row-btn nav">
+              <h2>order online</h2>
+              <p>Delicious food delivered to your door</p>
+            </button>
+            <button href="#booking" class="book first-row-btn nav">
+              <h2>book a table</h2>
+              <p>Eat perfect meal in our gorgeous restaurant</p>
+            </button>
+          </div>
+          <div class="second-row">
+            <div class="opening">
+              <h3>Opening Hours</h3>
+              <p>Tue-Sun, 12PM-12AM</p>
+            </div>
+          </div>
+          <div class="third-row">
+            <div class="carousel">
+              <div class="carousel-inner">
+                <div class="image"><img class="image" src="images/assets/pizza-3.jpg" alt="image"></div>
+                <div class="quotes">
+                  <h2 class="quote-title">Amazing service!</h2>
+                  <p class="quote-content">SUPER, consectetur adipiscing elit. Aliquam egentas viverra tortor, eu
+                    ullamcorper
+                    dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                  <span class="quote-author">— Izzy Osborne</span>
+                </div>
+              </div>
+            </div>
+            <div class="carousel">
+              <div class="carousel-inner">
+                <div class="image"><img class="image" src="images/assets/pizza-4.jpg" alt="image"></div>
+                <div class="quotes">
+                  <h2 class="quote-title">Amazing restaurant!</h2>
+                  <p class="quote-content">Beautiful, consectetur adipiscing elit. Aliquam egentas viverra tortor, eu
+                    ullamcorper
+                    dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                  <span class="quote-author">— Kim Łon Jest</span>
+                </div>
+              </div>
+            </div>
+            <div class="carousel">
+              <div class="carousel-inner">
+                <div class="image"><img class="image" src="images/assets/pizza-1.jpg" alt="image"></div>
+                <div class="quotes">
+                  <h2 class="quote-title">Just amazing!</h2>
+                  <p class="quote-content">Amazing, consectetur adipiscing elit. Aliquam egentas viverra tortor, eu
+                    ullamcorper
+                    dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                  <span class="quote-author">— Jacek Placek</span>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-indicators">
+              <span class="indicator"></span>
+              <span class="indicator"></span>
+              <span class="indicator"></span>
+            </div>
+          </div>
+          <div class="images-fist-row">
+            <div class="image-gallery">
+              <img src="images/assets/pizza-4.jpg" alt="image">
+              <span class="icons">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-share-alt branch"></i>
+              </span>
+            </div>
+            <div class="image-gallery">
+              <img src="images/assets/pizza-5.jpg" alt="image">
+              <span class="icons">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-share-alt branch"></i>
+              </span>
+            </div>
+            <div class="image-gallery">
+              <img src="images/assets/pizza-6.jpg" alt="image">
+              <span class="icons">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-share-alt branch"></i>
+              </span>
+            </div>
+          </div>
+          <div class="images-second-row">
+            <div class="image-gallery">
+              <img src="images/assets/pizza-7.jpg" alt="image">
+              <span class="icons">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-share-alt branch"></i>
+              </span>
+            </div>
+            <div class="image-gallery">
+              <img src="images/assets/pizza-8.jpg" alt="image">
+              <span class="icons">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-share-alt branch"></i>
+              </span>
+            </div>
+            <div class="image-gallery">
+              <img src="images/assets/pizza-9.jpg" alt="image">
+              <span class="icons">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-share-alt branch"></i>
+              </span>
+            </div>
+          </div>
+          <footer class="footer"><a href="https://instagram.com/" target="_blank">View more on Instagram</a></footer>
+        </div>
+      </div>
+    </section>
+    <section id="order">
+      <div id="product-list" class="product-list container"></div>
+    </section>
+    <section id="booking">
+      <div class="booking-wrapper container"></div>
+    </section>
+  </div>
+  <script id="template-booking-widget" type="text/x-handlebars-template">
       <div class="booking-widget">
         <h2 class="page__title no-spacing">Book a table</h2>
         <form class="booking-form">
@@ -134,8 +244,8 @@
           </div>
         </form>
       </div>
-      </script>
-      <script id="template-cart-product" type="text/x-handlebars-template">
+  </script>
+  <script id="template-cart-product" type="text/x-handlebars-template">
         <ul class="cart__order-summary no-spacing">
           <li>
             <div class="widget-amount"> <!-- widget-amount -->
@@ -248,4 +358,5 @@
   <script src="vendor/range-slider.min.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
+
 </html>

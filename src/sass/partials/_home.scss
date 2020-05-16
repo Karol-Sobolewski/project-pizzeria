@@ -1,3 +1,13 @@
+#pages {
+  > * {
+    display: none;
+  }
+
+  > .active {
+    display: block;
+  }
+}
+
 .main-container {
   background-color: $color-light;
   height: 1258px;
@@ -10,13 +20,15 @@
   @include flex(row, flex-start, center);
 }
 
-.order .first-row-btn {
-  background-image: url('/images/assets/pizza-1.jpg');
+.order {
+  cursor: pointer;
+  background: url('/images/assets/pizza-1.jpg');
   background-size: 299px 119px;
 }
 
-.book .first-row-btn {
-  background-image: url('/images/assets/pizza-2.jpg');
+.book {
+  cursor: pointer;
+  background: url('/images/assets/pizza-2.jpg');
   margin-left: 6px;
 }
 
@@ -96,10 +108,12 @@
 
 // THIRD OW
 .third-row {
-  @include flex(row, flex-start, center);
+  @include flex(column, center, center);
+  position: relative;
   margin-top: 102px;
-  width: 604;
-  margin-left: 34;
+  width: 604px;
+  height: 300px;
+  margin-left: 34px;
 }
 
 .image {
