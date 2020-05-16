@@ -195,14 +195,21 @@ class Booking{
       }
     });
 
-    thisBooking.dom.form.addEventListener('submit', function(event){
-      event.preventDefault();
+    thisBooking.dom.form.addEventListener('submit', function(){
+      //event.preventDefault();
       console.log(' thisBooking.table', thisBooking.table);
+
+      //console.log(thisBooking.payload);
       //if(thisBooking.table.classList.contains(classNames.booking.tableBookedSvr)){
       //alert('empty');
       //}
       //event.preventDefault();
-      //thisBooking.sendBooking();
+      if(parseInt(thisBooking.table)){
+        thisBooking.sendBooking();
+      }else{
+        alert('please choose table');
+      }
+
     });
 
   }
@@ -219,9 +226,10 @@ class Booking{
   sendBooking(){
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
+    console.log('send', parseInt(thisBooking.table));
     const payload = {
       id: '',
-      table: thisBooking.table,
+      table: parseInt(thisBooking.table),
       date: thisBooking.datePicker.correctValue,
       hour:thisBooking.hourPicker.correctValue,
       duration: thisBooking.hoursAmount.correctValue,
