@@ -194,8 +194,8 @@ class Booking{
       }
     });
 
-    thisBooking.dom.form.addEventListener('submit', function(){
-      //event.preventDefault();
+    thisBooking.dom.form.addEventListener('submit', function(event){
+      event.preventDefault();
       console.log(' thisBooking.table', thisBooking.table);
 
       //console.log(thisBooking.payload);

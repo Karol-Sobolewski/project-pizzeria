@@ -28,6 +28,8 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
+    thisWidget.dom.hourDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.hourDecrease);
+    thisWidget.dom.hourIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.hourIncrease);
     //console.log('thisWidgetxd', thisWidget);
     thisWidget.dom.input.value = thisWidget.amount.min;
   }

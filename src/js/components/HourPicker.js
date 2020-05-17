@@ -14,6 +14,20 @@ class HourPicker extends BaseWidget {
 
     thisWidget.initPlugin();
     thisWidget.value = thisWidget.dom.input.value;
+    //thisWidget.setBackground();
+  }
+
+
+  setBackground(){
+
+    const slider = document.getElementsByClassName('rangeSlider')[0];
+    console.log('slider', slider);
+    let background = 'linear-gradient(to right, ';
+
+
+    background += 'red 20%, orange 20% 40%, blue 40% 60%, green 60% 80%, blue 80%)';
+
+    slider.style.background = background;
   }
 
   initPlugin() {
@@ -23,6 +37,7 @@ class HourPicker extends BaseWidget {
     thisWidget.dom.input.addEventListener('input', function() {
       thisWidget.value = thisWidget.dom.input.value;
     });
+
   }
 
   parseValue(time) {
