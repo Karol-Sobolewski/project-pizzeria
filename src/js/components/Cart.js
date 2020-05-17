@@ -49,6 +49,8 @@ class Cart{
     thisCart.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
       thisCart.sendOrder();
+      thisCart.dom.wrapper.classList.remove('active');
+      thisCart.reset();
     });
   }
 
@@ -62,7 +64,7 @@ class Cart{
     //console.log('thisCart.dom.productList', thisCart.dom.productList);
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
     console.log('thisCart', thisCart.dom.productList);
-
+    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
     thisCart.dom.wrapper.classList.add('active');
     thisCart.update();
   }
@@ -74,6 +76,11 @@ class Cart{
     thisCart.products.splice(index);
     //console.log('thisCart.products',   thisCart.products);
     cartProduct.dom.wrapper.remove();
+    console.log(thisCart.products);
+    if(thisCart.products == ''){
+      thisCart.dom.wrapper.classList.remove('active');
+      thisCart.reset();
+    }
     //console.log('thiscart dom wrapper',  cartProduct.dom);
     //console.log(cartProduct.dom.wrapper.remove);
     //console.log('cartProduct4',  cartProduct);
