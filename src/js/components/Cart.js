@@ -79,6 +79,7 @@ class Cart{
     console.log(thisCart.products);
     if(thisCart.products == ''){
       thisCart.dom.wrapper.classList.remove('active');
+      //thisCart.element.classList.remove('active');
       thisCart.reset();
     }
     //console.log('thiscart dom wrapper',  cartProduct.dom);

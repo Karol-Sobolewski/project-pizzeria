@@ -297,7 +297,7 @@
           "id": 1,
           "class": "object table",
           "label": "table-1",
-          "capacity": {
+          "amount": {
             "min": 4,
             "max": 9
           }
@@ -306,7 +306,7 @@
           "id": 2,
           "class": "object table table--round",
           "label": "table-2",
-          "capacity": {
+          "amount": {
             "min": 2,
             "max": 6
           }
@@ -315,7 +315,7 @@
           "id": 3,
           "class": "object table",
           "label": "table-3",
-          "capacity": {
+          "amount": {
             "min": 1,
             "max": 4
           }

@@ -31,7 +31,8 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.hourDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.hourDecrease);
     thisWidget.dom.hourIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.hourIncrease);
     //console.log('thisWidgetxd', thisWidget);
-    thisWidget.dom.input.value = thisWidget.amount.min;
+
+    //thisWidget.dom.input.value = thisWidget.amount.min;
   }
 
   initActions(){
@@ -52,6 +53,7 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.linkIncrease.addEventListener('click', function(event){
       event.preventDefault();
       //thisWidget.setValue(thisWidget.value + 1);
+
       thisWidget.value = ++thisWidget.dom.input.value;
       thisWidget.announce();
     });
@@ -66,7 +68,7 @@ class AmountWidget extends BaseWidget{
 
   renderValue(){
     const thisWidget = this;
-    //thisWidget.dom.input.value = thisWidget.value;
+    thisWidget.dom.input.value = thisWidget.value;
 
     //console.log('x', thisWidget.dom.input.value);
     console.log('thisWidget.value', thisWidget.value);
