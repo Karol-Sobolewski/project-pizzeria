@@ -30,8 +30,8 @@ class DatePicker extends BaseWidget{
           return(date.getDay() === 1);
         }
       ],
-      onChange: function(dateStr){
-        thisWidget.value = dateStr;
+      onChange: function(dateStr){ //rok 2020, luty
+        thisWidget.value = utils.dateToStr(dateStr[0]);
         //console.log('thisWidget.value', thisWidget.value);
       }
     };
