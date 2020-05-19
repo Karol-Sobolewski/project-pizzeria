@@ -115,7 +115,9 @@ class Booking{
       }
 
       thisBooking.booked[date][hourBlock].push(table);
+
     }
+
   }
 
   updateDOM(){
@@ -146,6 +148,7 @@ class Booking{
 
       if(
         !allAvailable
+        //update ->allavailable = false
         &&
         thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ){
@@ -238,14 +241,16 @@ class Booking{
       if(parseInt(thisBooking.table)){
 
         thisBooking.sendBooking();
-        //thisBooking.makeBooked();
-        //thisBooking.updateDOM();
+        //
+        thisBooking.makeBooked(thisBooking.date, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, thisBooking.table);
+
+        thisBooking.updateDOM();
+
       }else{
         alert('please choose table');
       }
 
     });
-
   }
 
   getSelectedCheckboxValues(name) {
