@@ -231,17 +231,16 @@ class Booking{
 
     thisBooking.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
-      console.log(' thisBooking.table', thisBooking.table);
+      for (let table of  thisBooking.dom.tables){
+        console.log(' thisBooking.table', table);
+        table.classList.remove(classNames.booking.tableSelected);
+      }
+      console.log('thisBooking.table', thisBooking.dom.tables);
 
-      //console.log(thisBooking.payload);
-      //if(thisBooking.table.classList.contains(classNames.booking.tableBooked)){
-      //alert('empty');
-      //}
-      //event.preventDefault();
       if(parseInt(thisBooking.table)){
 
         thisBooking.sendBooking();
-        //
+
         thisBooking.makeBooked(thisBooking.date, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, thisBooking.table);
 
         thisBooking.updateDOM();
@@ -289,8 +288,8 @@ class Booking{
       .then(response => response.json())
       .then(parsedResponse => {
         console.log('parsedResponse', parsedResponse);
-        //thisCart.reset();
-        //thisCart.update();
+        thisBooking.makeBooked(thisBooking.date, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, thisBooking.table);
+        thisBooking.updateDOM();
       });
   }
 
