@@ -128,6 +128,7 @@ class Booking{
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
     //console.log('thisBooking.date', thisBooking.hourPicker.value);
     let allAvailable = false;
+    thisBooking.table = null;
 
     if(
       typeof thisBooking.booked[thisBooking.date] == 'undefined'
@@ -142,7 +143,6 @@ class Booking{
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
       if(!isNaN(tableId)){
         tableId = parseInt(tableId);
-        thisBooking.table = table;
         //console.log('tables +', parseInt(tableId));
       }
 
@@ -156,6 +156,7 @@ class Booking{
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
+      table.classList.remove(classNames.booking.tableSelected);
     }
   }
 
@@ -179,12 +180,13 @@ class Booking{
 
           break;
         } else {
-          hoursToChoose += 0.5;
+
           if(bookings[hour]) {
             if(bookings[hour].includes(tableId)) {
               break;
             }
           }
+          hoursToChoose += 0.5;
         }
       }
     }
@@ -221,33 +223,19 @@ class Booking{
         console.log('tables[bookedTable-1]', tables);
         tables[bookedTable-1].classList.remove(classNames.booking.tableSelected);
       }
+      thisBooking.updateDOM();
     });
 
     thisBooking.datePicker.dom.input.addEventListener('input', function() {
       if (bookedTable.length > 0) {
         tables[bookedTable-1].classList.remove(classNames.booking.tableSelected);
       }
+      thisBooking.updateDOM();
     });
 
     thisBooking.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
-      for (let table of  thisBooking.dom.tables){
-        console.log(' thisBooking.table', table);
-        table.classList.remove(classNames.booking.tableSelected);
-      }
-      console.log('thisBooking.table', thisBooking.dom.tables);
-
-      if(parseInt(thisBooking.table)){
-
-        thisBooking.sendBooking();
-
-        thisBooking.makeBooked(thisBooking.date, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, thisBooking.table);
-
-        thisBooking.updateDOM();
-
-      }else{
-        alert('please choose table');
-      }
+      thisBooking.sendBooking();
 
     });
   }
@@ -288,9 +276,16 @@ class Booking{
       .then(response => response.json())
       .then(parsedResponse => {
         console.log('parsedResponse', parsedResponse);
-        thisBooking.makeBooked(thisBooking.date, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, thisBooking.table);
-        thisBooking.updateDOM();
+        if(parseInt(thisBooking.table)){
+
+          thisBooking.makeBooked(thisBooking.date, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, parseInt(thisBooking.table));
+          thisBooking.updateDOM();
+
+        } else{
+          alert('please choose table');
+        }
       });
+
   }
 
 
@@ -321,10 +316,7 @@ class Booking{
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount, null, 0.5);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
-    //console.log('wrapper', thisBooking.dom.wrapper);
-    thisBooking.dom.wrapper.addEventListener('updated', function(){
-      thisBooking.updateDOM();
-    });
+
   }
 }
 

@@ -43,6 +43,8 @@ class CartProduct{
     const thisCartProduct = this;
 
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+    thisCartProduct.amountWidget.value = thisCartProduct.amount;
+
     thisCartProduct.dom.amountWidget.addEventListener('updated', function(event){
       event.preventDefault();
 
